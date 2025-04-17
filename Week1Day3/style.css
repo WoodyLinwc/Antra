@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    text-align: center;
+}
+
+#container{
+    width: 100%;
+    max-width: 600px;
+}
+
+.form-row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form-field{
+    flex: 0 0 48%;
+}
+
+.form-input{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #b5b6b7;
+    border-radius: 8px;
+}
+
+.form-input:focus{
+    outline: none; 
+    border-color: #5B9BD5;
+    box-shadow: 0 0 5px #5B9BD5;
+}
+
+.full-width{
+    flex: 0 0 100%;
+}
+
+
+.agree-row {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-container {
+    flex: 0 0 auto;
+    margin-right: 100px;
+}
+
+.terms-text {
+    flex: 1 1 0%;
+}
+
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#register-btn{
+    background-color: #3a83d7;
+}
+
+#sign-btn{
+    background-color: rgb(128, 185, 43);
+}
+
+#register{
+    background-color: #5B9BD5;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+#terms{
+    color: #87c0d3;
+}
+
+#btn{
+    margin-top: -20px;
+}
+
+@media screen and (max-width: 768px) {
+    #container {
+        max-width: 90%;
+        padding: 15px;
+    }
+    
+    .form-field {
+        flex: 0 0 100%;
+    }
+    
+    .checkbox-container {
+        margin-right: 20px; 
+    }
+
+    button{
+        margin-top: 10px;
+    }
+}
