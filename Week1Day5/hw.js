@@ -292,3 +292,42 @@ function notRepeat(s){
     return undefined;
 }
 
+// 24. Write a JavaScript function to apply Bubble Sort algorithm.
+function bubbleSort(arr){
+    const result = [...arr];
+    const n = arr.length;
+    let swapped;
+
+
+    for(let i = 0; i < n; i++){
+        swapped = false;
+
+        for(let j =0; j < n - i - 1; j++){
+            if(result[j] > result[j+1]){
+                [result[j],result[j+1]] = [result[j+1],result[j]];
+                swapped = true;
+            }
+        }
+
+        if(!swapped){
+            break;
+        }
+    }
+    return result;
+}
+
+
+// 25. Write a JavaScript function that accept a list of country names as input and returns the longest country name as
+// output.
+
+
+// 26. Write a JavaScript function to find longest substring in a given a string without repeating characters.
+
+
+// 27. Write a JavaScript function that returns the longest palindrome in a given string.
+
+
+// 28. Write a JavaScript program to pass a 'JavaScript function' as parameter.
+
+
+// 29. Write a JavaScript function to get the function name.
