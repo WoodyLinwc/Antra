@@ -319,15 +319,93 @@ function bubbleSort(arr){
 
 // 25. Write a JavaScript function that accept a list of country names as input and returns the longest country name as
 // output.
+function longestCountry(countries){
+    let longest = countries[0];
+
+    for(let i = 0; i<countries.length; i++){
+        if(countries[i].length > longest.length){
+            longest = countries[i]
+        }
+    }
+    return longest;
+}
+const countryList = ["Australia", "Germany", "United States of America", "Brazil", "India"];
 
 
 // 26. Write a JavaScript function to find longest substring in a given a string without repeating characters.
+function longestSubstringWithoutRepeating(s){
+    let startIndex = 0;
+    let maxLength = 0;
+    let maxStartIndex = 0;
 
+    const map = new Map();
+
+    for(let i = 0; i<s.length;i++){
+        const char = s[i];
+
+        // if seen this char before and it's within current window
+        if(map.has(char) && map.get(char) >= startIndex){
+            startIndex = map.get(char) + 1;
+        }
+
+        // update the most recent index of this char
+        map.set(char, i);
+
+        // check if the current substring is longer than our max
+        let currentLength = i - startIndex + 1;
+        if(currentLength > maxLength){
+            maxLength = currentLength;
+            maxStartIndex = startIndex;
+        }
+    }
+
+    return s.substring(maxStartIndex, maxStartIndex + maxLength);
+}
 
 // 27. Write a JavaScript function that returns the longest palindrome in a given string.
+function longestPalindrome(s){
+    function expand(i,j){
+        let left = i;
+        let right = j;
+
+        while(left >= 0 && right < s.length && s[left] == s[right]){
+            left--;
+            right++;
+        }
+        return s.slice(left + 1, right);
+    }
+
+    let result = '';
+
+    for(let i = 0; i<s.length; i++){
+        // expand for odd palindrome
+        let odd = expand(i,i);
+        if(odd.length > result.length){
+            result = odd;
+        }
+
+        // expand for even palindrome
+        let even = expand(i,i+1);
+        if(even.length > result.length){
+            result = even;
+        }
+    }
+    return result;
+}
 
 
 // 28. Write a JavaScript program to pass a 'JavaScript function' as parameter.
-
+function operation(callback, data){
+    return callback(data);
+}
+function double(x){
+    return x * 2;
+}
+// console.log(operation(double,10))
 
 // 29. Write a JavaScript function to get the function name.
+function getFunctionName(fn){
+    if(typeof fn !== 'function') return null;
+
+    return fn.name;
+}
