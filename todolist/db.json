@@ -1,0 +1,36 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "content": "todo item example 1"
+    },
+    {
+      "id": "2",
+      "content": "todo item example 2"
+    },
+    {
+      "id": "3",
+      "content": "todo item example 3"
+    },
+    {
+      "id": 4,
+      "content": "qweqwe"
+    },
+    {
+      "id": "1b86",
+      "content": "asdasd"
+    },
+    {
+      "id": "d66d",
+      "content": "zczxzxczxc"
+    },
+    {
+      "id": "3e91",
+      "content": "rtyrtyrtyr"
+    },
+    {
+      "id": "b238",
+      "content": "123123123"
+    }
+  ]
+}
