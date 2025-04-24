@@ -36,5 +36,6 @@ export const View = (() => {
     getInputValue,
     clearInput,
     addBtnEl,
+    todolistEl
   };
 })();
