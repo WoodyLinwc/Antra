@@ -1,0 +1,114 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    padding: 20px;
+}
+
+.container {
+    /* so the container doesn't stretch along with window */
+    max-width: 600px; 
+    /* center div horizontally */
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group{
+    margin-bottom: 15px;
+}
+
+label{
+    /* take up full width */
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.goal-input, .goal-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.btn-add{
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+}
+
+.btn-add:hover{
+    background-color: #218800;
+}
+
+.goal-list{
+    list-style: none;
+}
+
+.goal-item{
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.goal-info{
+    flex: 1;
+}
+
+.goal-category{
+    font-weight: bold;
+    color: #444;
+}
+
+.goal-repetitions{
+    color: #444;
+}
+
+.btn-achieved {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-achieved:hover{
+    background-color: #0069d9;
+}
+
+.goal-achieved{
+    background-color: #ddd;
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.goal-achieved .btn-achieved{
+    background-color: gray;
+}
