@@ -1,18 +1,18 @@
 {
   "goals": [
     {
-      "id": 1,
-      "description": "Run 5 kilometers",
-      "category": "Cardio",
-      "repetitions": "30 minutes",
+      "id": "8279",
+      "description": "push up",
+      "category": "Strength Training",
+      "repetitions": "12 times",
       "achieved": false
     },
     {
-      "id": 2,
-      "description": "Do 20 push-ups",
+      "id": "200e",
+      "description": "push up",
       "category": "Strength Training",
-      "repetitions": "20 repetitions",
-      "achieved": false
+      "repetitions": "20 times",
+      "achieved": true
     }
   ]
 }
