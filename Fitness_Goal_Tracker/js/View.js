@@ -32,7 +32,7 @@ export const View = (() => {
         goals.forEach((goal) => {
             const goalItem = document.createElement('li');
             goalItem.id = goal.id;
-            goalItem.className =  `goal-item ${goal.achieved} ? 'goal-achieved' : ''`;
+            goalItem.className =  `goal-item ${goal.achieved ? 'goal-achieved' : ''}`;
 
             const goalInfo = document.createElement('div');
             goalInfo.className = 'goal-info';
