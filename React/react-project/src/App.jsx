@@ -10,7 +10,7 @@ function App() {
   const todoRefName = useRef();
 
   useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem(KEY));
+    const storedTodos = JSON.parse(localStorage.getItem(KEY)) || [];
     console.log("Loading todos:", storedTodos);
     if(storedTodos){
       setTodos(storedTodos);
