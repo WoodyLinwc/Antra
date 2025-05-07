@@ -16,6 +16,11 @@ export const Model = (() => {
             this.goals = [...this.goals, newGoal];
         }
 
+        // removeGoal(id)
+        removeGoal(id){
+            this.goals = this.goals.filter(goal => goal.id !== id);
+        }
+
         updateGoals(id, updateGoal){
             this.goals = this.goals.map((goal) => 
                 goal.id === id ? {...goal, ...updateGoal} : goal

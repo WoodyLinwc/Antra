@@ -37,6 +37,8 @@ const Controller = ((model, view, api) => {
         api.updateGoal(id, {achieved: true}).then(updatedGoal => state.markAsAchieved(id));
     };
 
+    // delete handler id, api.delete
+
 
     const init = () => {
         // subscribe view to model changes
@@ -52,9 +54,10 @@ const Controller = ((model, view, api) => {
 
         // event delegation
         view.goalsList.addEventListener('click', (e) => {
+            const goalItem = e.target.closest('li');
+            const id = goalItem.id;
+
             if(e.target.className === 'btn-achieved' && !e.target.disabled){
-                const goalItem = e.target.closest('li');
-                const id = goalItem.id;
                 markAsAchievedHandler(id);
             }
         });

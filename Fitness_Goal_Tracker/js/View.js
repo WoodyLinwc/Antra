@@ -6,6 +6,7 @@ export const View = (() => {
     const goalReps = document.getElementById('goal-reps');
     const addGoalBtn = document.getElementById('add-goal-btn');
     const goalsList = document.getElementById('goals-list');
+    const goalsClear = document.getElementById('clear-goal-btn');
 
     const getInputValues = () => {
         return {
@@ -30,47 +31,93 @@ export const View = (() => {
         goalsList.innerHTML = '';
 
         goals.forEach((goal) => {
-            const goalItem = document.createElement('li');
-            goalItem.id = goal.id;
-            goalItem.className =  `goal-item ${goal.achieved ? 'goal-achieved' : ''}`;
 
-            const goalInfo = document.createElement('div');
-            goalInfo.className = 'goal-info';
+            if(goal.achieved === false){
+                const goalItem = document.createElement('li');
+                goalItem.id = goal.id;
+                goalItem.className =  `goal-item ${goal.achieved ? 'goal-achieved' : ''}`;
+    
+                const goalInfo = document.createElement('div');
+                goalInfo.className = 'goal-info';
+    
+    
+                // goal description
+                const descSpan = document.createElement('span');
+                descSpan.textContent = `${goal.description} - `;
+    
+                // category (bold)
+                const catSpan = document.createElement('span');
+                catSpan.className = 'goal-category';
+                catSpan.textContent = goal.category;
+    
+                // repetitions (in parentheses)
+                const repsSpan = document.createElement('span');
+                repsSpan.className = 'goal-repetitions';
+                repsSpan.textContent = ` (${goal.repetitions})`;
+    
+                goalInfo.appendChild(descSpan);
+                goalInfo.appendChild(catSpan);
+                goalInfo.appendChild(repsSpan);
+    
+                // mark as achieved button
+                const achievedBtn = document.createElement('button');
+                achievedBtn.className = 'btn-achieved';
+                achievedBtn.textContent = 'Mark as Achieved';
+                achievedBtn.disabled = goal.achieved;
+    
+    
+                goalItem.appendChild(goalInfo);
+                goalItem.appendChild(achievedBtn);
+                goalsList.appendChild(goalItem);
+            }
+        });
+        goals.forEach((goal) => {
 
-
-            // goal description
-            const descSpan = document.createElement('span');
-            descSpan.textContent = `${goal.description} - `;
-
-            // category (bold)
-            const catSpan = document.createElement('span');
-            catSpan.className = 'goal-category';
-            catSpan.textContent = goal.category;
-
-            // repetitions (in parentheses)
-            const repsSpan = document.createElement('span');
-            repsSpan.className = 'goal-repetitions';
-            repsSpan.textContent = ` (${goal.repetitions})`;
-
-            goalInfo.appendChild(descSpan);
-            goalInfo.appendChild(catSpan);
-            goalInfo.appendChild(repsSpan);
-
-            // mark as achieved button
-            const achievedBtn = document.createElement('button');
-            achievedBtn.className = 'btn-achieved';
-            achievedBtn.textContent = 'Mark as Achieved';
-            achievedBtn.disabled = goal.achieved;
-
-            goalItem.appendChild(goalInfo);
-            goalItem.appendChild(achievedBtn);
-            goalsList.appendChild(goalItem);
+            if(goal.achieved === true){
+                const goalItem = document.createElement('li');
+                goalItem.id = goal.id;
+                goalItem.className =  `goal-item ${goal.achieved ? 'goal-achieved' : ''}`;
+    
+                const goalInfo = document.createElement('div');
+                goalInfo.className = 'goal-info';
+    
+    
+                // goal description
+                const descSpan = document.createElement('span');
+                descSpan.textContent = `${goal.description} - `;
+    
+                // category (bold)
+                const catSpan = document.createElement('span');
+                catSpan.className = 'goal-category';
+                catSpan.textContent = goal.category;
+    
+                // repetitions (in parentheses)
+                const repsSpan = document.createElement('span');
+                repsSpan.className = 'goal-repetitions';
+                repsSpan.textContent = ` (${goal.repetitions})`;
+    
+                goalInfo.appendChild(descSpan);
+                goalInfo.appendChild(catSpan);
+                goalInfo.appendChild(repsSpan);
+    
+                // mark as achieved button
+                const achievedBtn = document.createElement('button');
+                achievedBtn.className = 'btn-achieved';
+                achievedBtn.textContent = 'Mark as Achieved';
+                achievedBtn.disabled = goal.achieved;
+    
+    
+                goalItem.appendChild(goalInfo);
+                goalItem.appendChild(achievedBtn);
+                goalsList.appendChild(goalItem);
+            }
         });
     };
 
     return{
         goalForm,
         addGoalBtn,
+        goalsClear,
         goalsList,
         getInputValues,
         clearInputs,

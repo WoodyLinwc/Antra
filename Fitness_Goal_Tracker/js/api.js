@@ -23,8 +23,6 @@ export const API = (() => {
         .then(response => response.json());
     };
 
-
-
     const updateGoal = (id, updatedFields) => {
         return fetch(`${baseURL}/${id}`, {
             method: 'PATCH',
@@ -36,11 +34,24 @@ export const API = (() => {
         .then(response => response.json());
     };
 
+    // delete goal
+    const deleteGoal = (id) => {
+        return fetch(`${baseURL}/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(response => response.json());
+    }
+
+
 
     return {
         getAllGoals,
         createGoal,
         updateGoal,
+        deleteGoal,
     };
 
 })();
