@@ -61,6 +61,8 @@ function FunctionDemo(props){
             <p>Timer: {timer} seconds</p>
             <button onClick={handleAdd}>Add</button>
             <button onClick={clearCount}>Reset</button>
+            <br />
+            {props.children}
         </div>
     )
 }
