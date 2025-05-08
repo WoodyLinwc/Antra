@@ -16,10 +16,16 @@ class ClassDemo extends React.Component{
 
     // automatically bind this context
     handleAdd = () => {
-        this.setState({
-            counter: this.state.counter + 1,
-        });
+        // this.setState({
+        //     counter: this.state.counter + 1,
+        // });
+
+        this.setState((prev) => {
+            return {counter: prev.counter + 1}
+        })
     };
+
+
 
     clearCount = () => {
         this.setState({
