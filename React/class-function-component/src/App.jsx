@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <ClassDemo/>
-      <FunctionDemo/>
+      <FunctionDemo>Child of Function component</FunctionDemo>
     </>
   )
 }
