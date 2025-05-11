@@ -3,7 +3,7 @@ import './TodoItem.css';
 
 class TodoItem extends React.Component {
     render(){
-        const {todo} = this.props;
+        const {todo, onDelete, onToggle} = this.props;
 
         return (
             <div className={`todo-item ${todo.completed ? 'completed' : ''}`}>
@@ -12,9 +12,9 @@ class TodoItem extends React.Component {
                 </div>
 
                 <div className='todo-action'>
-                    <button className='action-button edit'>Edit</button>
-                    <button className='action-button delete'>Delete</button>
-                    <button className='action-button toggle'>{todo.completed ? '←' : '→'}</button>
+                    <button className='action-button edit'>🖊️</button>
+                    <button className='action-button delete' onClick={() => onDelete(todo.id)}>🗑️ </button>
+                    <button className='action-button toggle' onClick={() => onToggle(todo.id, todo.completed)}>{todo.completed ? '←' : '→'}</button>
                 </div>
             </div>
         );

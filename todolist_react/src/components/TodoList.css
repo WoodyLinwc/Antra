@@ -31,6 +31,7 @@
 .list-section{
     flex:1;
     padding-left: 1rem;
+    padding-right: 1rem;
     background-color: rgb(230, 230, 230);
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

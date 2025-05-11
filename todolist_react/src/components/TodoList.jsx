@@ -19,13 +19,83 @@ class TodoList extends React.Component {
         this.setState({ inputValue: e.target.value });
     }
 
-    handleAddTodo = (e) => {
+    handleAddTodo = async(e) => {
         e.preventDefault();
 
         if(!this.state.inputValue.trim()) return;
         console.log("Adding todo:", this.state.inputValue);
-        this.setState({ inputValue: ''})
+        
+        const newTodo = {
+            content: this.state.inputValue,
+            completed: false
+        };
+
+        try {
+            const response = await fetch('http://localhost:3001/todos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newTodo)
+            });
+
+            const addedTodo = await response.json();
+
+            this.setState(prev => ({
+                todos: [...prev.todos, addedTodo],
+                pendingTodos: [...prev.pendingTodos, addedTodo],
+                inputValue: ''
+            }));
+        } catch (error) {
+            console.error('Error adding todo', error);
+        }
     }
+
+    handleDeleteTodo = async(id) => {
+        try {
+            await fetch(`http://localhost:3001/todos/${id}`,{
+                method: 'DELETE'
+            });
+
+            this.setState(prev => ({
+                todos: prev.todos.filter(todo => todo.id !== id),
+                pendingTodos: prev.pendingTodos.filter(todo => todo.id !== id),
+                completedTodos: prev.completedTodos.filter(todo => todo.id !== id),
+            }));
+        } catch (error) {
+            console.error('Error deleting todo:', error)
+        }
+    }
+
+
+    handleToggleTodo = async (id, currentStatus) => {
+        try {
+            const todoToUpdate = this.state.todos.find(todo => todo.id === id);
+            const updatedTodo = {...todoToUpdate, completed: !currentStatus};
+
+            await fetch(`http://localhost3001/todos/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updatedTodo)
+            });
+
+            this.setState(prev => {
+                const updatedTodos = prev.todos.map(todo => 
+                    todo.id === id? {...todo, completed: !currentStatus} : todo
+                );
+                return {
+                    todos: updatedTodos,
+                    pendingTodos: updatedTodos.filter(todo => !todo,completed),
+                    completedTodos: updatedTodos.filter(todo => todo.completed)
+                };
+            });
+        } catch (error) {
+            console.error('Error updating todo:', error);
+        }
+    }
+
 
     componentDidMount(){
         this.fetchTodos();
@@ -40,7 +110,7 @@ class TodoList extends React.Component {
             const completedTodos = data.filter(todo => todo.completed);
 
             this.setState({
-                todos,
+                todos: data,
                 pendingTodos,
                 completedTodos,
                 loading: false
@@ -78,7 +148,7 @@ class TodoList extends React.Component {
                                 <p className='empty-list'>No pending tasks</p>
                             ) : (
                                 pendingTodos.map(todo => (
-                                    <TodoItem key={todo.id} todo={todo}/>
+                                    <TodoItem key={todo.id} todo={todo} onDelete={this.handleDeleteTodo} onToggle={this.handleToggleTodo}/>
                                 ))
                             )}
                         </div>
@@ -90,7 +160,7 @@ class TodoList extends React.Component {
                             <p className="empty-list">No completed tasks</p>
                             ) : (
                                 completedTodos.map(todo => (
-                                    <TodoItem key={todo.id} todo={todo}/>
+                                    <TodoItem key={todo.id} todo={todo} onDelete={this.handleDeleteTodo} onToggle={this.handleToggleTodo}/>
                                 ))
                             )}
                         </div>
