@@ -1,5 +1,6 @@
 import React from 'react';
 import './TodoList.css';
+import TodoItem from './TodoItem';
 
 class TodoList extends React.Component {
 
@@ -35,8 +36,8 @@ class TodoList extends React.Component {
             const response = await fetch('http://localhost:3001/todos');
             const data = await response.json();
 
-            const pendingTodos = todos.filter(todo => !todo.completed);
-            const completedTodos = todos.filter(todo => todo.completed);
+            const pendingTodos = data.filter(todo => !todo.completed);
+            const completedTodos = data.filter(todo => todo.completed);
 
             this.setState({
                 todos,
@@ -53,9 +54,9 @@ class TodoList extends React.Component {
     render() {
         const {pendingTodos, completedTodos, inputValue, loading} = this.state;
 
-        // if(loading) {
-        //     return <div className='loading'>Loading todos...</div>
-        // }
+        if(loading) {
+            return <div className='loading'>Loading todos...</div>
+        }
 
 
         return (
@@ -77,9 +78,7 @@ class TodoList extends React.Component {
                                 <p className='empty-list'>No pending tasks</p>
                             ) : (
                                 pendingTodos.map(todo => (
-                                    <div key={todo.id} className='todo-item'>
-                                        {todo.content}
-                                    </div>
+                                    <TodoItem key={todo.id} todo={todo}/>
                                 ))
                             )}
                         </div>
@@ -91,9 +90,7 @@ class TodoList extends React.Component {
                             <p className="empty-list">No completed tasks</p>
                             ) : (
                                 completedTodos.map(todo => (
-                                    <div key={todo.id} className="todo-item">
-                                        {todo.content}
-                                    </div>
+                                    <TodoItem key={todo.id} todo={todo}/>
                                 ))
                             )}
                         </div>
