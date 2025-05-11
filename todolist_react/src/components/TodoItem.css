@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color:moccasin;
+    background-color:rgb(211, 202, 186);
     border-radius: 4px;
     padding: 0.8rem;
     margin-bottom: 0.5rem;
@@ -42,4 +42,8 @@
     background-color: rgb(23, 181, 23);
     color: white;
     font-weight: bold;
+}
+
+.left-toggle {
+    margin-right: 10px;
 }

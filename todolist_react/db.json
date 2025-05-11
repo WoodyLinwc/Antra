@@ -1,19 +1,24 @@
 {
-    "todos": [
+  "todos": [
     {
-        "id": 1,
-        "content": "Functional first, stylish second",
-        "completed": false
+      "id": "00a7",
+      "content": "work out",
+      "completed": false
     },
     {
-        "id": 2,
-        "content": "Make a symmetrical layout",
-        "completed": false
+      "id": "1f6b",
+      "content": "sleep",
+      "completed": true
     },
     {
-        "id": 3,
-        "content": "Apply some style as you like",
-        "completed": true
+      "id": "a69b",
+      "content": "eat lunch",
+      "completed": true
+    },
+    {
+      "id": "3b9f",
+      "content": "eat breakfast",
+      "completed": false
     }
-    ]
+  ]
 }

@@ -53,41 +53,51 @@ class TodoList extends React.Component {
 
     handleDeleteTodo = async(id) => {
         try {
-            await fetch(`http://localhost:3001/todos/${id}`,{
+            const response = await fetch(`http://localhost:3001/todos/${id}`, {
                 method: 'DELETE'
             });
-
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+    
             this.setState(prev => ({
                 todos: prev.todos.filter(todo => todo.id !== id),
                 pendingTodos: prev.pendingTodos.filter(todo => todo.id !== id),
                 completedTodos: prev.completedTodos.filter(todo => todo.id !== id),
             }));
         } catch (error) {
-            console.error('Error deleting todo:', error)
+            console.error('Error deleting todo:', error);
         }
     }
+    
 
 
     handleToggleTodo = async (id, currentStatus) => {
         try {
             const todoToUpdate = this.state.todos.find(todo => todo.id === id);
+            
             const updatedTodo = {...todoToUpdate, completed: !currentStatus};
-
-            await fetch(`http://localhost3001/todos/${id}`, {
+    
+            const response = await fetch(`http://localhost:3001/todos/${id}`, { // Fixed URL
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(updatedTodo)
             });
-
+    
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+    
             this.setState(prev => {
                 const updatedTodos = prev.todos.map(todo => 
-                    todo.id === id? {...todo, completed: !currentStatus} : todo
+                    todo.id === id ? {...todo, completed: !currentStatus} : todo
                 );
                 return {
                     todos: updatedTodos,
-                    pendingTodos: updatedTodos.filter(todo => !todo,completed),
+                    pendingTodos: updatedTodos.filter(todo => !todo.completed), // Fixed typo
                     completedTodos: updatedTodos.filter(todo => todo.completed)
                 };
             });
