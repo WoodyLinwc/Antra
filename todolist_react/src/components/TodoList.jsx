@@ -63,7 +63,7 @@ class TodoList extends React.Component {
                 <form className='todo-form' onSubmit={this.handleAddTodo}>
                     <input 
                     type="text" 
-                    value={this.state.inputValue} 
+                    value={inputValue} 
                     onChange={this.handleInputChange}
                     className='todo-input'
                     />
