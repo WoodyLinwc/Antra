@@ -1,3 +1,19 @@
 {
-    
+    "todos": [
+    {
+        "id": 1,
+        "content": "Functional first, stylish second",
+        "completed": false
+    },
+    {
+        "id": 2,
+        "content": "Make a symmetrical layout",
+        "completed": false
+    },
+    {
+        "id": 3,
+        "content": "Apply some style as you like",
+        "completed": true
+    }
+    ]
 }
