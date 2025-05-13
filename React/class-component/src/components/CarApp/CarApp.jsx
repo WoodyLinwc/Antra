@@ -47,6 +47,7 @@ class CarApp extends React.Component{
         return(
             <>
                 <h3>Car App</h3>
+                <p>shouldComponentUpdate() and PureComponent</p>
                 <ul style={{display: "flex", gap: "10px", flexDirection: "row"}}>
                     {this.state.cars.map((car) => {
                         return <InfoCard key={car.id} car={car} handleSell={this.handleSell}/>
