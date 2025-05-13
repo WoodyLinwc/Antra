@@ -1,4 +1,4 @@
-import CarApp from "./components/CarApp/CarApp"
+import CarApp from "../../../React_Basics/src/components/CarApp/CarApp"
 
 
 
