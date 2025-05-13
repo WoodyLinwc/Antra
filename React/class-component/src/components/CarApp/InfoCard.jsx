@@ -2,8 +2,16 @@ import React from "react";
 
 // React.PureComponent: shallow comparison
 class InfoCard extends React.Component{
-    render() {
 
+    shouldComponentUpdate(nextProps,nextState){
+        const {make, quantity} = this.props.car;
+
+        return (
+            make !== nextProps.car.make || quantity !== nextProps.car.quantity
+        );
+    }
+
+    render() {
         // const { car } = this.props;
         // const { make, quantity, id } = car;
         const {make, quantity, id} = this.props.car;
