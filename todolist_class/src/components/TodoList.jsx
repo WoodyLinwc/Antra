@@ -1,7 +1,7 @@
 import React from 'react';
 import './TodoList.css';
 import TodoItem from './TodoItem';
-import { fetchTodos, addTodo, deleteTodo, updateTodo } from '../api';
+import { fetchTodos, addTodo, deleteTodo, updateTodo, editTodoContent } from '../api';
 
 class TodoList extends React.Component {
 
@@ -80,6 +80,25 @@ class TodoList extends React.Component {
         }
     }
 
+    handleEditTodo = async (id, newContent) => {
+        try {
+            await editTodoContent(id, newContent);
+            
+            this.setState(prev => {
+                const updatedTodos = prev.todos.map(todo => 
+                    todo.id === id ? {...todo, content: newContent} : todo
+                );
+                return {
+                    todos: updatedTodos,
+                    pendingTodos: updatedTodos.filter(todo => !todo.completed),
+                    completedTodos: updatedTodos.filter(todo => todo.completed)
+                };
+            });
+        } catch (error) {
+            console.error('Error editing todo:', error);
+        }
+    }
+
     componentDidMount(){
         this.fetchAllTodos();
     }
@@ -118,32 +137,45 @@ class TodoList extends React.Component {
                     value={inputValue} 
                     onChange={this.handleInputChange}
                     className='todo-input'
+                    placeholder="Add a new task"
                     />
-                    <button type='submit' className='submit-button'>submit</button>
+                    <button type='submit' className='submit-button'>Add Task</button>
                 </form>
 
                 <div className='lists-container'>
-                        <div className='list-section'>
-                            <h2>Pending Tasks</h2>
-                            {pendingTodos.length === 0 ? (
-                                <p className='empty-list'>No pending tasks</p>
-                            ) : (
-                                pendingTodos.map(todo => (
-                                    <TodoItem key={todo.id} todo={todo} onDelete={this.handleDeleteTodo} onToggle={this.handleToggleTodo}/>
-                                ))
-                            )}
-                        </div>
+                    <div className='list-section'>
+                        <h2>Pending Tasks</h2>
+                        {pendingTodos.length === 0 ? (
+                            <p className='empty-list'>No pending tasks</p>
+                        ) : (
+                            pendingTodos.map(todo => (
+                                <TodoItem 
+                                    key={todo.id} 
+                                    todo={todo} 
+                                    onDelete={this.handleDeleteTodo} 
+                                    onToggle={this.handleToggleTodo}
+                                    onEdit={this.handleEditTodo}
+                                />
+                            ))
+                        )}
+                    </div>
 
-                        <div className='list-section'>
-                            <h2>Completed Tasks</h2>
-                            <div className="todo-items">
-                            {completedTodos.length === 0 ? (
-                            <p className="empty-list">No completed tasks</p>
-                            ) : (
-                                completedTodos.map(todo => (
-                                    <TodoItem key={todo.id} todo={todo} onDelete={this.handleDeleteTodo} onToggle={this.handleToggleTodo}/>
-                                ))
-                            )}
+                    <div className='list-section'>
+                        <h2>Completed Tasks</h2>
+                        <div className="todo-items">
+                        {completedTodos.length === 0 ? (
+                        <p className="empty-list">No completed tasks</p>
+                        ) : (
+                            completedTodos.map(todo => (
+                                <TodoItem 
+                                    key={todo.id} 
+                                    todo={todo} 
+                                    onDelete={this.handleDeleteTodo} 
+                                    onToggle={this.handleToggleTodo}
+                                    onEdit={this.handleEditTodo}
+                                />
+                            ))
+                        )}
                         </div>
                     </div>
                 </div>

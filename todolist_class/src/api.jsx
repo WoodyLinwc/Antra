@@ -75,3 +75,25 @@ try {
     throw error;
 }
 };
+
+// Edit a todo's content
+export const editTodoContent = async (id, newContent) => {
+try {
+    // First get the current todo
+    const response = await fetch(`${API_URL}/todos/${id}`);
+    if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const todo = await response.json();
+    
+    // Update only the content property
+    const updatedTodo = { ...todo, content: newContent };
+    
+    // Save the updated todo
+    return await updateTodo(id, updatedTodo);
+} catch (error) {
+    console.error('Error editing todo:', error);
+    throw error;
+}
+};

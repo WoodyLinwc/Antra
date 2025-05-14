@@ -8,16 +8,16 @@
     {
       "id": "1f6b",
       "content": "sleep",
-      "completed": false
-    },
-    {
-      "id": "a69b",
-      "content": "eat lunch",
       "completed": true
     },
     {
       "id": "3b9f",
       "content": "eat breakfast",
+      "completed": false
+    },
+    {
+      "id": "c9f5",
+      "content": "eat lunch",
       "completed": false
     }
   ]
