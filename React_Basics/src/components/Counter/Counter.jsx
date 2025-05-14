@@ -2,15 +2,15 @@ import { useState } from "react";
 
 function Counter(){
 
-    const [counter, useCounter] = useState(0);
+    const [counter, setCounter] = useState(0);
 
 
     function handleAdd(){
-        useCounter((prev) => prev + 1);
+        setCounter((prev) => prev + 1);
     }
 
     const handleMinus = () => {
-        useCounter((prev) => prev - 1);
+        setCounter((prev) => prev - 1);
     }
 
 
