@@ -110,7 +110,6 @@ return (
         value={inputValue} 
         onChange={handleInputChange}
         className='todo-input'
-        placeholder="Add a new task"
         />
         <button type='submit' className='submit-button'>Add Task</button>
     </form>
