@@ -3,12 +3,12 @@
     {
       "id": "00a7",
       "content": "work out",
-      "completed": false
+      "completed": true
     },
     {
       "id": "1f6b",
       "content": "sleep",
-      "completed": true
+      "completed": false
     },
     {
       "id": "a69b",
