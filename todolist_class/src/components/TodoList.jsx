@@ -1,6 +1,7 @@
 import React from 'react';
 import './TodoList.css';
 import TodoItem from './TodoItem';
+import { fetchTodos, addTodo, deleteTodo, updateTodo } from '../api';
 
 class TodoList extends React.Component {
 
@@ -31,15 +32,7 @@ class TodoList extends React.Component {
         };
 
         try {
-            const response = await fetch('http://localhost:3001/todos', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(newTodo)
-            });
-
-            const addedTodo = await response.json();
+            const addedTodo = await addTodo(newTodo);
 
             this.setState(prev => ({
                 todos: [...prev.todos, addedTodo],
@@ -53,13 +46,7 @@ class TodoList extends React.Component {
 
     handleDeleteTodo = async(id) => {
         try {
-            const response = await fetch(`http://localhost:3001/todos/${id}`, {
-                method: 'DELETE'
-            });
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+            await deleteTodo(id);
     
             this.setState(prev => ({
                 todos: prev.todos.filter(todo => todo.id !== id),
@@ -71,25 +58,12 @@ class TodoList extends React.Component {
         }
     }
     
-
-
     handleToggleTodo = async (id, currentStatus) => {
         try {
             const todoToUpdate = this.state.todos.find(todo => todo.id === id);
-            
             const updatedTodo = {...todoToUpdate, completed: !currentStatus};
     
-            const response = await fetch(`http://localhost:3001/todos/${id}`, { // Fixed URL
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(updatedTodo)
-            });
-    
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+            await updateTodo(id, updatedTodo);
     
             this.setState(prev => {
                 const updatedTodos = prev.todos.map(todo => 
@@ -97,7 +71,7 @@ class TodoList extends React.Component {
                 );
                 return {
                     todos: updatedTodos,
-                    pendingTodos: updatedTodos.filter(todo => !todo.completed), // Fixed typo
+                    pendingTodos: updatedTodos.filter(todo => !todo.completed),
                     completedTodos: updatedTodos.filter(todo => todo.completed)
                 };
             });
@@ -106,15 +80,13 @@ class TodoList extends React.Component {
         }
     }
 
-
     componentDidMount(){
-        this.fetchTodos();
+        this.fetchAllTodos();
     }
 
-    fetchTodos = async() => {
+    fetchAllTodos = async() => {
         try{
-            const response = await fetch('http://localhost:3001/todos');
-            const data = await response.json();
+            const data = await fetchTodos();
 
             const pendingTodos = data.filter(todo => !todo.completed);
             const completedTodos = data.filter(todo => todo.completed);
@@ -127,9 +99,9 @@ class TodoList extends React.Component {
             });
         } catch (error){
             console.error('Error fetching todos:', error);
+            this.setState({ loading: false });
         }
     }
-
 
     render() {
         const {pendingTodos, completedTodos, inputValue, loading} = this.state;
@@ -137,7 +109,6 @@ class TodoList extends React.Component {
         if(loading) {
             return <div className='loading'>Loading todos...</div>
         }
-
 
         return (
             <div className='todo-list-container'>
@@ -178,8 +149,6 @@ class TodoList extends React.Component {
                 </div>
             </div>
         );
-
-        
     }
 }
 
