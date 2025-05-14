@@ -52,6 +52,7 @@ function Timer(){
     return(
         <>
             <h3>Timer: {timer}</h3>
+            <p>useState, useEffect, useRef</p>
             <button onClick={stopTimer}>Stop Timer</button>
             <button onClick={resumeTimer}>Resume Timer</button>
             <button onClick={resetTimer}>Reset Timer</button>
