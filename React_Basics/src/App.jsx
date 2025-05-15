@@ -2,6 +2,7 @@ import { useState } from 'react'
 import CarApp from './components/CarApp/CarApp';
 import Timer from './components/Timer/Timer';
 import Counter from './components/Counter/Counter';
+import Shopping from './components/Shopping/Shopping';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <hr />
       <Counter/>
       <hr />
+      <Shopping/>
     </>
   )
 }
