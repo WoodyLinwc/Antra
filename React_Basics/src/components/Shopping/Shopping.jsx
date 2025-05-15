@@ -67,11 +67,16 @@ function Shopping(){
         .toFixed(2);
     }, [items])
 
+
+    const resetCounter = () => {
+        setCount(0)
+    }
+
     return(
         <div>
             <h3>Shopping List</h3>
             <div>
-                {/* controlled? */}
+                {/* controlled component */}
                 <input type="text" 
                 placeholder='Filter items...' 
                 value={filter} 
@@ -98,6 +103,7 @@ function Shopping(){
                 >
                     Clicked: {count} times
                 </button>
+                <button onClick={resetCounter}>Reset</button>
             </div>
         </div>
     )
