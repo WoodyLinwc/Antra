@@ -1,7 +1,9 @@
 import React, { useState, useCallback, useRef, memo } from 'react';
 import './TodoItem.css';
+import { useTodoContext } from '../context/TodoContext';
 
-const TodoItem = memo(({ todo, onDelete, onToggle, onEdit }) => {
+const TodoItem = memo(({ todo }) => {
+const { handleDeleteTodo, handleToggleTodo, handleEditTodo } = useTodoContext();
 const [isEditing, setIsEditing] = useState(false);
 const [editValue, setEditValue] = useState(todo.content);
 const inputRef = useRef(null);
@@ -30,11 +32,11 @@ const handleSaveEdit = useCallback(() => {
     }
     
     if (editValue !== todo.content) {
-    onEdit(todo.id, editValue);
+    handleEditTodo(todo.id, editValue);
     }
     
     setIsEditing(false);
-}, [editValue, todo.content, todo.id, onEdit]);
+}, [editValue, todo.content, todo.id, handleEditTodo]);
 
 const handleKeyDown = useCallback((e) => {
     // Save on Enter key
@@ -53,7 +55,7 @@ return (
     {todo.completed && (
         <button 
         className='action-button toggle left-toggle' 
-        onClick={() => onToggle(todo.id, todo.completed)}
+        onClick={() => handleToggleTodo(todo.id, todo.completed)}
         >
         ←
         </button>
@@ -84,14 +86,14 @@ return (
         </button>
         <button 
         className='action-button delete' 
-        onClick={() => onDelete(todo.id)}
+        onClick={() => handleDeleteTodo(todo.id)}
         >
         🗑️
         </button>
         {!todo.completed && (
         <button 
             className='action-button toggle' 
-            onClick={() => onToggle(todo.id, todo.completed)}
+            onClick={() => handleToggleTodo(todo.id, todo.completed)}
         >
             →
         </button>
