@@ -30,7 +30,7 @@ function Counter(){
                 <button onClick={handleMinus}>Minus one</button>
                 </>
             : 
-                <div></div>
+                <button onClick={() => setCounter(prev => prev = 0)}>Reset</button>
             }
             
         </>
