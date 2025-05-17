@@ -6,6 +6,7 @@ const ThemeContext = createContext();
 // custom hook for using the theme context
 export function useTheme(){
     const context = useContext(ThemeContext);
+    // context = { theme, toggleTheme, isDark }
     if(context === undefined){
         throw new Error('useThem must be used within a ThemeProvider')
     }
