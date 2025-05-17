@@ -23,8 +23,8 @@ function ThemeApp(){
             <button onClick={toggleTheme}>Toggle Theme</button>
             
             <div style={{ marginTop: '20px', display: 'flex', gap: '20px' }}>
-                <ThemedCard title="Card 1" content="This card uses the theme context"/>
-                <ThemedCard title="Card 2" content="Changing the theme affects all components"/>
+                <ThemedCard title="Card 1" content="This component uses the theme context"/>
+                <ThemedCard title="Card 2" content="Custom hook useTheme()"/>
             </div>
             
             <div>
