@@ -19,7 +19,7 @@ function withLocalStorage(WrappedComponent, storageKey, defaultValue=''){
         // create interface for child component
         const localStorageProps = {
             storedValue: value,
-            updatedStoredValue: setValue,
+            updateStoredValue: setValue,
             clearStorage: () => {
                 localStorage.removeItem(storageKey);
                 setValue(defaultValue);
