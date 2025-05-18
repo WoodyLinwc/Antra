@@ -6,7 +6,7 @@ import LoadingDemo from './LoadingDemo';
 function HOCToHooksDemo() {
     return (
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-        <h3>React Hooks Implementation (Formerly HOCs)</h3>
+        <h3>React Hooks Implementation</h3>
         
         <LoggingDemo initialCount={5} />
         <LocalStorageDemo />
