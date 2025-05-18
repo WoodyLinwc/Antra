@@ -7,7 +7,6 @@ function HOCDemo() {
 return (
     <div style={{ maxWidth: '600px', margin: '0 auto' }}>
     <h3>Higher-Order Component Examples</h3>
-    <p>Below are three examples of Higher-Order Components (HOCs):</p>
     
     <LoggingDemo initialCount={5} />
     <LocalStorageDemo />
@@ -26,13 +25,13 @@ return (
         <li><strong>withLocalStorage</strong> - Persists component state to browser localStorage</li>
         <li><strong>withLoadingIndicator</strong> - Shows loading UI while data is fetched</li>
         </ol>
-        <p>These patterns demonstrate how HOCs can:</p>
+        {/* <p>These patterns demonstrate how HOCs can:</p>
         <ul>
         <li>Add cross-cutting functionality to components</li>
         <li>Handle side effects (logging, storage)</li>
         <li>Manage UI state (loading indicators)</li>
         <li>Provide data to components</li>
-        </ul>
+        </ul> */}
     </div>
     </div>
 );
