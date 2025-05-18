@@ -20,7 +20,7 @@ function UserProfile({ data }) {
     return (
         <div style={{ padding: '10px', margin: '10px 0', border: '1px solid #ccc', borderRadius: '4px' }}>
             <h4>Loading Indicator HOC Demo</h4>
-            <p>This component showed a loading spinner for 2 seconds!</p>
+            <p>This component showed a loading spinner for 2 seconds</p>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
             <div><strong>Name:</strong> {data.name}</div>
