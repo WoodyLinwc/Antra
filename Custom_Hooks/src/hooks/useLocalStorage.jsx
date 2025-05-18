@@ -8,7 +8,7 @@ function useLocalStorage(storageKey, defaultValue=''){
     const[value,setValue] = useState(() => {
         try {
             const storedValue = localStorage.getItem(storageKey);
-            return storedValue !== null ? JSON.parse(setValue) : defaultValue;
+            return storedValue !== null ? JSON.parse(storedValue) : defaultValue;
         } catch (error) {
             console.error('Error reading from localStorage:', error);
             return defaultValue;
@@ -37,7 +37,7 @@ function useLocalStorage(storageKey, defaultValue=''){
 
     return{
         storedValue: value,
-        updatedStoredValue: setValue,
+        updateStoredValue: setValue,
         clearStorage
     };
 }
