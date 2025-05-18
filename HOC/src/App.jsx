@@ -1,11 +1,9 @@
-import { useState } from 'react'
+import HOCDemo from './components/HOCExamples/HOCDemo';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-
+      <HOCDemo />
     </>
   )
 }
