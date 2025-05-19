@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Table from './components/table'
-import './App.css'
+import FilteredTable from './components/FilteredTable'
+import './table.css'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -8,6 +9,7 @@ function App() {
   return (
     <>
     <Table/>
+    <FilteredTable/>
     </>
   )
 }

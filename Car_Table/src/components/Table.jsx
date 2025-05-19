@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import data from '../data';
+import '../table.css'
 
 function Table(){
     const [info, setInfo] = useState([]);
@@ -48,10 +49,14 @@ function Table(){
         
     }, [])
 
+    // const tableStyle = {
+    //     border: "1px solid black"
+    // }
+
     return(
         <div>
             <h2>Coding 1: Sales Data with Regional Sums</h2>
-            <table style={{border: '1'}}>
+            <table >
                 <thead>
                     <tr>
                         <th>region</th>
