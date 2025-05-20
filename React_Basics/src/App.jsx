@@ -5,6 +5,7 @@ import Counter from './components/Counter/Counter';
 import Shopping from './components/Shopping/Shopping';
 import ThemeApp from './components/ThemeApp/ThemeApp';
 import { ThemeProvider } from './context/ThemeContext';
+import Pokemon from './components/Pokemon/Pokemon';
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <ThemeProvider>
         <ThemeApp/>
       </ThemeProvider>
+      <hr />
+      <Pokemon/>
       <hr />
       <CarApp/>
       <hr />
