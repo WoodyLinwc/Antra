@@ -1,3 +1,4 @@
+// reducer: pure functions that specify how state changes in response to actions.
 export const counterReducer = (state = { count: 0 }, action) => {
     switch (action.type) {
         case "INCREMENT":

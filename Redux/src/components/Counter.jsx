@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "../redux/store";
 
+// view
 export function Counter() {
     const count = useSelector((state) => state.count);
     const dispatch = useDispatch();
@@ -10,6 +11,7 @@ export function Counter() {
             <h2>Simple Redux Counter</h2>
             <div>{count}</div>
             <div>
+                {/* action, Plain JavaScript objects that describe what happened in your app. */}
                 <button onClick={() => dispatch({ type: "INCREMENT" })}>
                     +
                 </button>

@@ -1,6 +1,6 @@
 import { createContext, useContext, useSyncExternalStore } from "react";
 
-// create a simple store
+// create a simple store, the centralized location that holds your application's state.
 export function createStore(reducer, initialState) {
     let state = initialState;
     const listeners = new Set();
