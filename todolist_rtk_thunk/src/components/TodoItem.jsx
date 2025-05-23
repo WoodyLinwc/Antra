@@ -74,15 +74,7 @@ const TodoItem = memo(({ todo, onDelete, onToggle, onEdit }) => {
                         className="edit-input"
                     />
                 ) : (
-                    <span
-                        style={{
-                            textDecoration: todo.completed
-                                ? "line-through"
-                                : "none",
-                        }}
-                    >
-                        {todo.content}
-                    </span>
+                    <span>{todo.content}</span>
                 )}
             </div>
 
