@@ -1,7 +1,13 @@
-function App() {
-    const [count, setCount] = useState(0);
+import React from "react";
+import TodoList from "./components/TodoList";
+import "./App.css";
 
-    return <></>;
+function App() {
+    return (
+        <div className="todo-app">
+            <TodoList />
+        </div>
+    );
 }
 
 export default App;
