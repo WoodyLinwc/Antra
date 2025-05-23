@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { UseSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./TodoList.css";
 import TodoItem from "./TodoItem";
 import {
     fetchTodosAsync,
     addTodoAsync,
     deleteTodoAsync,
+    updateTodoAsync,
     editTodoContentAsync,
 } from "../store/todoSlice";
-import { useSelector } from "../../../Redux/src/redux/store";
 
 const TodoList = () => {
     const [inputValue, setInputValue] = useState("");
     const dispatch = useDispatch();
 
     // get data from Redux store
-    const { item: todos, status, error } = useSelector((state) => state.todos);
+    const { items: todos, status, error } = useSelector((state) => state.todos);
 
     // derived states
     const pendingTodos = todos.filter((todo) => !todo.completed);
@@ -95,7 +95,6 @@ const TodoList = () => {
                     value={inputValue}
                     onChange={handleInputChange}
                     className="todo-input"
-                    placeholder="Enter a new task"
                 />
                 <button type="submit" className="submit-button">
                     Add Task
