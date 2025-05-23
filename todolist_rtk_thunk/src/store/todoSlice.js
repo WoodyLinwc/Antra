@@ -21,7 +21,7 @@ export const fetchTodosAsync = createAsyncThunk(
 
 export const addTodoAsync = createAsyncThunk(
     "todos/addTodo",
-    async (_, { rejectWithValue }) => {
+    async (todo, { rejectWithValue }) => {
         try {
             const response = await fetch(`${API_URL}/todos`, {
                 method: "POST",
@@ -93,7 +93,7 @@ export const editTodoContentAsync = createAsyncThunk(
     "todos/editTodoContent",
     async ({ id, newContent }, { rejectWithValue, getState }) => {
         try {
-            // Get the current todo from state
+            // get the current todo from state
             const { todos } = getState();
             const todo = todos.items.find((todo) => todo.id === id);
 
@@ -101,7 +101,7 @@ export const editTodoContentAsync = createAsyncThunk(
                 throw new Error("Todo not found");
             }
 
-            // Update only the content property
+            // update only the content property
             const updatedTodo = { ...todo, content: newContent };
 
             const response = await fetch(`${API_URL}/todos/${id}`, {
@@ -132,7 +132,7 @@ const todoSlice = createSlice({
         error: null,
     },
     reducers: {},
-    extraReducer: (builder) => {
+    extraReducers: (builder) => {
         // fetch todos
         builder
             .addCase(fetchTodosAsync.pending, (state) => {
