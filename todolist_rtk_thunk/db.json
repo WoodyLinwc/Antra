@@ -1,24 +1,24 @@
 {
-    "todos": [
-        {
-            "id": "00a7",
-            "content": "work out",
-            "completed": true
-        },
-        {
-            "id": "1f6b",
-            "content": "sleep",
-            "completed": true
-        },
-        {
-            "id": "3b9f",
-            "content": "eat breakfast",
-            "completed": false
-        },
-        {
-            "id": "c9f5",
-            "content": "eat lunch",
-            "completed": false
-        }
-    ]
+  "todos": [
+    {
+      "id": "00a7",
+      "content": "work out",
+      "completed": true
+    },
+    {
+      "id": "1f6b",
+      "content": "sleep",
+      "completed": true
+    },
+    {
+      "id": "3b9f",
+      "content": "eat breakfast",
+      "completed": false
+    },
+    {
+      "id": "c9f5",
+      "content": "eat lunch",
+      "completed": false
+    }
+  ]
 }
