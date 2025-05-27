@@ -80,7 +80,7 @@ const PokemonCard = ({ pokemon }) => {
                     </span>
                 ))}
             </div>
-
+            {/* 
             <div className="pokemon-stats">
                 {Object.entries(stats).map(([statName, value]) => (
                     <div key={statName} className="stat-row">
@@ -101,7 +101,7 @@ const PokemonCard = ({ pokemon }) => {
                         <span className="stat-value">{value}</span>
                     </div>
                 ))}
-            </div>
+            </div> */}
         </div>
     );
 };
