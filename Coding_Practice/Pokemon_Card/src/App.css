@@ -1,0 +1,84 @@
+.app {
+    text-align: center;
+}
+
+.app-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.app-header p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.loading {
+    padding: 60px 20px;
+}
+
+.pokeball-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #ddd;
+    border-top: 3px solid #333;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.error {
+    padding: 40px 20px;
+}
+
+.error button {
+    background: #ff4444;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.type-section {
+    margin-bottom: 40px;
+}
+
+.type-header {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+}
+
+.type-header.grass {
+    color: #78c850;
+}
+.type-header.water {
+    color: #6890f0;
+}
+.type-header.fire {
+    color: #f08030;
+}
+
+.pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .pokemon-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+    }
+}
