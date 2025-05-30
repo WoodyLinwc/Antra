@@ -1,15 +1,19 @@
 const { Router } = require("express");
 const { v4: uuidv4 } = require("uuid");
 const { todos } = require("../data/todos");
+const auth = require("../middleware/auth");
+const roleCheck = require("../middleware/roleCheck");
 
 const router = Router();
 
 // READ
+// Public route - anyone can view all todos
 router.get("/todos", (req, res) => {
     res.json(todos);
 });
 
-router.get("/todos/:id", (req, res) => {
+// Protected route - any authenticated user can view a specific todo
+router.get("/todos/:id", auth, (req, res) => {
     const { id } = req.params;
     const todo = todos.find((todo) => todo.id === id);
     if (!todo) {
@@ -20,7 +24,8 @@ router.get("/todos/:id", (req, res) => {
 });
 
 // CREATE
-router.post("/todos", (req, res) => {
+// Protected route - only admin and manager can create todos
+router.post("/todos", auth, roleCheck(["admin", "manager"]), (req, res) => {
     const { title, description } = req.body;
 
     const newTodo = {
@@ -28,6 +33,7 @@ router.post("/todos", (req, res) => {
         title: title,
         description: description || "",
         completed: false,
+        createdBy: req.user.id, // Track who created the todo
     };
     todos.push(newTodo);
 
@@ -36,7 +42,8 @@ router.post("/todos", (req, res) => {
 
 // UPDATE
 // PUT replaces the entire resource, so PATCH only update the filed you send
-router.patch("/todos/:id", (req, res) => {
+// Protected route - only admin can update todos
+router.patch("/todos/:id", auth, roleCheck(["admin"]), (req, res) => {
     const { id } = req.params;
     const { title, description, completed } = req.body;
 
@@ -61,7 +68,7 @@ router.patch("/todos/:id", (req, res) => {
 });
 
 // DELETE
-router.delete("/todos/:id", (req, res) => {
+router.delete("/todos/:id", auth, roleCheck(["admin"]), (req, res) => {
     const { id } = req.params;
     const todoToDelete = todos.find((todo) => todo.id === id);
 
