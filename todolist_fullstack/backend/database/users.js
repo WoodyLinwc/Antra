@@ -1,0 +1,20 @@
+let users = [
+    {
+        id: "1",
+        username: "admin",
+        password: "admin123",
+        email: "admin@example.com",
+        role: "admin",
+    },
+    {
+        id: "2",
+        username: "user",
+        password: "user123",
+        email: "user@example.com",
+        role: "user",
+    },
+];
+
+module.exports = {
+    users,
+};
