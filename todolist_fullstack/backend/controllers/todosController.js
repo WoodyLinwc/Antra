@@ -1,5 +1,3 @@
-const { todos } = require("../database/data");
-const { v4: uuidv4 } = require("uuid");
 const todoService = require("../services/todoService");
 
 // READ
