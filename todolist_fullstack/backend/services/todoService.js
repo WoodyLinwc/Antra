@@ -1,7 +1,3 @@
-const { todos } = require("../database/data");
-const { v4: uuidv4 } = require("uuid");
-
-const TodoRepository = require("../repositories/todoRepository");
 const todoRepository = require("../repositories/todoRepository");
 
 class TodoService {
