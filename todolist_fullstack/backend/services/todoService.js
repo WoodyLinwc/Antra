@@ -1,14 +1,17 @@
 const { todos } = require("../database/data");
 const { v4: uuidv4 } = require("uuid");
 
+const TodoRepository = require("../repositories/todoRepository");
+const todoRepository = require("../repositories/todoRepository");
+
 class TodoService {
     // READ
     getAllTodos() {
-        return todos;
+        return todoRepository.findAll();
     }
 
     getTodoById(id) {
-        const todo = todos.find((todo) => todo.id === id);
+        const todo = todoRepository.findById(id);
         if (!todo) {
             throw new Error(`Todo with id ${id} not found`);
         }
@@ -17,51 +20,30 @@ class TodoService {
 
     // CREATE
     createTodo(todoData) {
-        const { title, description } = todoData;
-        const newTodo = {
-            id: uuidv4(),
-            title: title,
-            description: description,
-            completed: false,
-        };
+        // validate required fields
+        if (!todoData.title) {
+            throw new Error("Title is required");
+        }
 
-        todos.push(newTodo);
-        return newTodo;
+        return todoRepository.create(todoData);
     }
 
     // UPDATE
     updateTodo(id, updates) {
-        const todoToUpdate = todos.find((todo) => todo.id === id);
-
-        if (!todoToUpdate) {
+        const updatedTodo = todoRepository.update(id, updates);
+        if (!updatedTodo) {
             throw new Error(`Todo with id ${id} not found`);
         }
 
-        // update only the fields that are provided
-        if (updates.title !== undefined) {
-            todoToUpdate.title = updates.title;
-        }
-        if (updates.description !== undefined) {
-            todoToUpdate.description = updates.description;
-        }
-        if (updates.completed !== undefined) {
-            todoToUpdate.completed = updates.completed;
-        }
-
-        return todoToUpdate;
+        return updatedTodo;
     }
 
     // DELETE
     deleteTodo(id) {
-        // only change the local variableAdd commentMore actions
-        // todos = todos.filter((todo) => todo.id !== id);
-
-        const todoIndex = todos.findIndex((todo) => todo.id === id);
-        if (todoIndex === -1) {
+        const result = todoRepository.delete(id);
+        if (!result) {
             throw new Error(`Todo with id ${id} not found`);
         }
-
-        todos.splice(todoIndex, 1);
         return {
             success: true,
             message: `Todo with id ${id} deleted successfully`,
