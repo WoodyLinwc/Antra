@@ -11,7 +11,7 @@ class UserRepository {
     }
 
     findByUsername(username) {
-        return users.find((user = user.username === username));
+        return users.find((user) => user.username === username);
     }
 
     findByEmail(email) {
