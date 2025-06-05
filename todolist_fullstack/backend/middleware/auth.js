@@ -5,7 +5,7 @@ const JWT_SECRET = process.env.JWT_SECRET || "default-secret-key";
 
 const authMiddleware = (req, res, next) => {
     // get token from header
-    const token = req.header("Authorization")?.replace("Bearer", "");
+    const token = req.header("Authorization")?.replace("Bearer ", "");
 
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
