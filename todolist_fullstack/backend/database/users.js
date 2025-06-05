@@ -1,3 +1,5 @@
+// in-memory database
+
 let users = [
     {
         id: "1",
