@@ -1,6 +1,6 @@
 import "./globals.css";
 import { AuthProvider } from "../context/AuthContext";
-import header from "../components/Header";
+import Header from "../components/Header";
 
 export const metadata = {
     title: "Next.js Auth App",
@@ -10,10 +10,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-            >
-                {children}
+            <body>
+                <AuthProvider>
+                    <Header />
+                    <main className="container">{children}</main>
+                </AuthProvider>
             </body>
         </html>
     );
