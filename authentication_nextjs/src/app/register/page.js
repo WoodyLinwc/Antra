@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRoute } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Register() {
@@ -15,7 +15,7 @@ export default function Register() {
     const [error, setError] = useState("");
 
     const { register } = useAuth();
-    const router = useRoute();
+    const router = useRouter();
 
     const handleChange = (e) => {
         setFormData({
