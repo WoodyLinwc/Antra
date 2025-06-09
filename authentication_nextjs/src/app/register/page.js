@@ -51,7 +51,7 @@ export default function Register() {
 
             {error && <div>{error}</div>}
 
-            <form onSubmit={handleChange}>
+            <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
                     <input
